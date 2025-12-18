@@ -10,6 +10,7 @@ import com.example.questapi_116.modeldata.UIStateSiswa
 import com.example.questapi_116.modeldata.toDataSiswa
 import com.example.questapi_116.repositori.RepositoryDataSiswa
 import retrofit2.Response
+
 class EntryViewModel(private val repositoryDataSiswa: RepositoryDataSiswa):
     ViewModel() {
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
