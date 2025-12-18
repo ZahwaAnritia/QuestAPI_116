@@ -11,3 +11,7 @@ interface RepositoryDataSiswa{
 }
 
 
+class JaringanRepositoryDataSiswa(
+    private val serviceApiSiswa: ServiceApiSiswa
+) : RepositoryDataSiswa {
+}
