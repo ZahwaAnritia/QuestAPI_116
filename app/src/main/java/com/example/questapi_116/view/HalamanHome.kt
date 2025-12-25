@@ -30,11 +30,11 @@ import com.example.questapi_116.viewmodel.provider.PenyediaViewModel
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
-    navigateToItemUpdate: (Int) -> Unit,
+    navigateToDetail: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
-    // 🔥 INI YANG PALING PENTING
+
     LaunchedEffect(Unit) {
         viewModel.loadSiswa()
     }
@@ -65,9 +65,9 @@ fun HomeScreen(
     ) { innerPadding ->
         HomeBody(
             statusUiSiswa = viewModel.listSiswa,
-            onSiswaClick = navigateToItemUpdate,
+            onSiswaClick = navigateToDetail,
             retryAction = viewModel::loadSiswa,
-            modifier = modifier
+            modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
         )
@@ -89,7 +89,7 @@ fun HomeBody(
             is StatusUiSiswa.Loading -> LoadingScreen()
             is StatusUiSiswa.Success -> DaftarSiswa(
                 itemSiswa = statusUiSiswa.siswa,
-                onSiswaClick = { onSiswaClick(it.id) }
+                onSiswaClick = { id -> onSiswaClick(id) }  // ✅ id sudah Int
             )
             is StatusUiSiswa.Error -> ErrorScreen(
                 retryAction = retryAction,
@@ -98,7 +98,6 @@ fun HomeBody(
         }
     }
 }
-
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Image(
@@ -131,7 +130,7 @@ fun ErrorScreen(
 @Composable
 fun DaftarSiswa(
     itemSiswa: List<DataSiswa>,
-    onSiswaClick: (DataSiswa) -> Unit,
+    onSiswaClick: (Int) -> Unit,  // ✅ Ubah dari (DataSiswa) jadi (Int)
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
@@ -140,7 +139,7 @@ fun DaftarSiswa(
                 siswa = siswa,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
-                    .clickable { onSiswaClick(siswa) }
+                    .clickable { onSiswaClick(siswa.id) }  // ✅ Kirim siswa.id
             )
         }
     }
