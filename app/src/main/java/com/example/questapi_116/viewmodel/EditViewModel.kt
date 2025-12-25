@@ -12,14 +12,15 @@ import retrofit2.Response
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.questapi_116.modeldata.toDataSiswa
-import com.example.questapi_116.uicontroller.route.DestinasiDetail
+import com.example.questapi_116.uicontroller.route.DestinasiEdit
 import kotlinx.coroutines.launch
+
 
 class EditViewModel(savedStateHandle: SavedStateHandle, private val repositoryDataSiswa: RepositoryDataSiswa): ViewModel(){
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
-    private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
+    private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiEdit.itemIdArg])
     init {
         viewModelScope.launch {
             uiStateSiswa = repositoryDataSiswa.getSatuSiswa(idSiswa)
