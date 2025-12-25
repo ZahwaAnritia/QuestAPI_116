@@ -89,7 +89,7 @@ fun HomeBody(
             is StatusUiSiswa.Loading -> LoadingScreen()
             is StatusUiSiswa.Success -> DaftarSiswa(
                 itemSiswa = statusUiSiswa.siswa,
-                onSiswaClick = { id -> onSiswaClick(id) }  // ✅ id sudah Int
+                onSiswaClick = { id -> onSiswaClick(id) }
             )
             is StatusUiSiswa.Error -> ErrorScreen(
                 retryAction = retryAction,
@@ -130,7 +130,7 @@ fun ErrorScreen(
 @Composable
 fun DaftarSiswa(
     itemSiswa: List<DataSiswa>,
-    onSiswaClick: (Int) -> Unit,  // ✅ Ubah dari (DataSiswa) jadi (Int)
+    onSiswaClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
