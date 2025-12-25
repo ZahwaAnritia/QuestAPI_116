@@ -8,8 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.questapi_116.modeldata.DetailSiswa
 import com.example.questapi_116.modeldata.UIStateSiswa
+import com.example.questapi_116.modeldata.toDataSiswa
 import com.example.questapi_116.repositori.RepositoryDataSiswa
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 
 class EditViewModel(savedStateHandle: SavedStateHandle, private val repositoryDataSiswa:
@@ -33,5 +35,13 @@ RepositoryDataSiswa
             nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
         }
     }
+    suspend fun editSatuSiswa(){
+        if (validasiInput(uiStateSiswa.detailSiswa)){
+            val call: Response<Void> = repositoryDataSiswa.editSatuSiswa(idSiswa,uiStateSiswa
+                .detailSiswa.toDataSiswa())
+
+
+    }
+}
 
 
