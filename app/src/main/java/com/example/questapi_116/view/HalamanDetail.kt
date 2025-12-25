@@ -1,10 +1,14 @@
 package com.example.questapi_116.view
 
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.questapi_116.uicontroller.route.DestinasiDetail
 import com.example.questapi_116.viewmodel.DetailViewModel
+import com.example.questapi_116.viewmodel.StatusUIDetail
 import com.example.questapi_116.viewmodel.provider.PenyediaViewModel
 
 
